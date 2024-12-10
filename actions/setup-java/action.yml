@@ -15,7 +15,8 @@ runs:
         path: ${{ env.PRJ_FULL_PATH }}
 
     - shell: bash
-      run: ls -l
+      run: |
+        ls -l
 
     - uses: actions/setup-java@v4
       with:
