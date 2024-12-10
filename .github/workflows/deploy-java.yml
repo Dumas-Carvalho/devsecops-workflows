@@ -25,6 +25,13 @@ jobs:
         with:
           jdk_version: '17'
 
+      - uses: actions/download-artifact@v4
+        name: Download Artifacts
+        with:
+          name: package
+          path: target
+          working-directory: ${{ env.PRJ_FULL_PATH }}
+
       - name: Deploy App
         run: |
           ls -l
