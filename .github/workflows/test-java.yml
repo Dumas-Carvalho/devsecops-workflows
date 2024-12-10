@@ -11,7 +11,17 @@ jobs:
       - name: Check-out Code
         uses: actions/checkout@v4
 
-      - uses: Dumas-Carvalho/devsecops-workflows/.github/workflows/setup-java.yml@main
+      - name: Get Composite
+        uses: actions/checkout@v4
+        with:
+          repository: Dumas-Carvalho/devsecops-workflows
+          ref: main
+          path: .github/workflows
+
+      - id: setup_java
+        uses: ./.github/workflows/actions/setup-java
+        with:
+          jdk_version: '17'
 
       - name: Unit Tests
         run: mvn test

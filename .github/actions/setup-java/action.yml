@@ -1,0 +1,18 @@
+name: 'Set Up Java'
+description: 'Configures the environment for Java projects, ensuring the specified JDK version is installed and ready for use.'
+author: 'dumasmcarvalho'
+inputs:
+  jdk_version:
+    description: |
+      Specify the Java version for the project.
+      Default is '17', a recommended LTS version.
+    default: '17'
+runs:
+  using: "composite"
+  steps:
+    - name: Configure Java
+      uses: actions/setup-java@v4
+      with:
+        java-version: ${{ inputs.jdk_version }}
+        distribution: 'temurin'
+        cache: maven
