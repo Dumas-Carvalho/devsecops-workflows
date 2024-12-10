@@ -4,9 +4,12 @@ on:
   workflow_call:
 
 jobs:
-  build:
+  reusable_workflow_build:
     runs-on: ubuntu-latest
     steps:
+      - name: Check-out Code
+        uses: actions/checkout@v4
+
       - uses: ./.github/workflows/common/setup-java.yml
 
       - name: Build Maven

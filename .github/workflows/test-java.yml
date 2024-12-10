@@ -4,9 +4,12 @@ on:
   workflow_call:
 
 jobs:
-  test:
+  reusable_workflow_test:
     runs-on: ubuntu-latest
     steps:
+      - name: Check-out Code
+        uses: actions/checkout@v4
+
       - uses: ./.github/workflows/setup-java.yml
 
       - name: Unit Tests
