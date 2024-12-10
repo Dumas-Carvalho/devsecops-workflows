@@ -21,10 +21,10 @@ jobs:
           path: devsecops-code
 
       - name: List Files
-        run: ls -lha && ls -la base-code && ls -la devsecops-code
+        run: ls -l
 
       - id: setup_java
-        uses: ./devsecops-workflows/actions/setup-java
+        uses: ./devsecops-code/actions/setup-java
         with:
           jdk_version: '17'
 
