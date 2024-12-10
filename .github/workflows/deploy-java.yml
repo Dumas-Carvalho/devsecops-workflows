@@ -29,8 +29,7 @@ jobs:
         name: Download Artifacts
         with:
           name: package
-          path: target
-          working-directory: ${{ env.PRJ_FULL_PATH }}
+          path: ${{ env.PRJ_FULL_PATH }}/target
 
       - name: Deploy App
         run: |
