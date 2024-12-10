@@ -10,12 +10,18 @@ jobs:
     steps:
       - name: Check-out Code
         uses: actions/checkout@v4
+        with:
+          path: base-code
 
       - name: Get Composite
         uses: actions/checkout@v4
         with:
           repository: Dumas-Carvalho/devsecops-workflows
           ref: main
+          path: devsecops-code
+
+      - name: List Files
+        run: ls -lha && ls -la base-code && ls -la devsecops-code
 
       - id: setup_java
         uses: ./devsecops-workflows/actions/setup-java
