@@ -1,10 +1,10 @@
-name: Test Java
+name: Deploy Java
 
 on:
   workflow_call:
 
 jobs:
-  reusable_workflow_test:
+  reusable_workflow_deploy:
     name: Reusable
     runs-on: ubuntu-24.04
     container:
@@ -25,19 +25,7 @@ jobs:
         with:
           jdk_version: '17'
 
-      - name: Unit Test
+      - name: Deploy App
         run: |
-          mvn -B clean test
+          ./scripts/deliver.sh
         working-directory: ${{ env.PRJ_FULL_PATH }}
-
-      - name: Copy Artifacts
-        run: |
-          mkdir artifact
-          cp target/surefire-reports/*.xml artifact
-        working-directory: ${{ env.PRJ_FULL_PATH }}
-
-      - uses: actions/upload-artifact@v4
-        name: Upload Artifacts
-        with:
-          name: Report
-          path: ${{ env.PRJ_FULL_PATH }}/artifact
