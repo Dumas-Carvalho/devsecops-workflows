@@ -27,5 +27,5 @@ jobs:
 
       - name: Unit Test
         run: |
-          mvn test
+          mvn -B clean test
         working-directory: ${{ env.PRJ_FULL_PATH }}
