@@ -5,12 +5,13 @@ on:
 
 jobs:
   reusable_workflow_test:
+    name: Reusable
     runs-on: ubuntu-latest
     steps:
       - name: Check-out Code
         uses: actions/checkout@v4
 
-      - uses: ./.github/workflows/setup-java.yml
+      - uses: Dumas-Carvalho/devsecops-workflows/.github/workflows/setup-java.yml@main
 
       - name: Unit Tests
         run: mvn test
