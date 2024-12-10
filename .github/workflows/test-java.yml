@@ -20,7 +20,7 @@ jobs:
           ref: main
           path: ${{ env.ADM_FULL_PATH }}
 
-      - id: setup_java
+      - name: Run Composite
         uses: ./devsecops-code/actions/setup-java
         with:
           jdk_version: '17'
