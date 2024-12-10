@@ -17,8 +17,16 @@ runs:
     - shell: bash
       run: ls -l
 
-    - uses: actions/setup-java@v3
+    - uses: actions/setup-java@v4
       with:
         distribution: 'temurin'
         java-version: ${{ inputs.jdk_version }}
-        cache: 'maven'
+
+    - uses: actions/cache@v4
+      with:
+        path: |
+          ~/.m2/repository
+          /root/.m2/repository
+        key: ${{ runner.os }}-java-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-java-maven-
