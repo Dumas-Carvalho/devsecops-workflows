@@ -28,16 +28,12 @@ jobs:
       - name: Unit Test
         run: |
           mvn -B clean test
-        working-directory: ${{ env.PRJ_FULL_PATH }}
-
-      - name: Copy Artifacts
-        run: |
-          mkdir artifact
-          cp target/surefire-reports/*.xml artifact
+          ls -l
         working-directory: ${{ env.PRJ_FULL_PATH }}
 
       - uses: actions/upload-artifact@v4
         name: Upload Artifacts
         with:
           name: report
-          path: ${{ env.PRJ_FULL_PATH }}/artifact
+          path: ${{ env.PRJ_FULL_PATH }}/target/surefire-reports/*.xml
+          retention-days: 1

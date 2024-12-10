@@ -28,7 +28,7 @@ jobs:
       - name: Maven Build
         run: |
           mvn -B -DskipTests clean package
-          ls -R target
+          ls -l
         working-directory: ${{ env.PRJ_FULL_PATH }}
 
       - uses: actions/upload-artifact@v4
@@ -36,3 +36,4 @@ jobs:
         with:
           name: package
           path: ${{ env.PRJ_FULL_PATH }}/target
+          retention-days: 1
