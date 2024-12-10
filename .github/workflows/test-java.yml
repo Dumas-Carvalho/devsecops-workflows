@@ -7,21 +7,23 @@ jobs:
   reusable_workflow_test:
     name: Reusable
     runs-on: ubuntu-latest
+    env:
+      PRJ_FULL_PATH: ${{ github.workspace }}/base-code
+      ADM_FULL_PATH: ${{ github.workspace }}/devsecops-code
     steps:
-      - name: Check-out Code
-        uses: actions/checkout@v4
-
       - name: Get Composite
         uses: actions/checkout@v4
         with:
           repository: Dumas-Carvalho/devsecops-workflows
           ref: main
-          path: .github/workflows
+          path: ${{ env.ADM_FULL_PATH }}
 
       - id: setup_java
-        uses: ./.github/workflows/actions/setup-java
+        uses: ./devsecops-code/actions/setup-java
         with:
           jdk_version: '17'
 
-      - name: Unit Tests
-        run: mvn test
+      - name: Unit Test
+        run: |
+          mvn test
+        working-directory: ${{ env.PRJ_FULL_PATH }}

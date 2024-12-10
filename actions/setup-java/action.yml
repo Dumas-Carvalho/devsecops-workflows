@@ -10,6 +10,15 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: Check-out Code
+      uses: actions/checkout@v4
+      with:
+        path: ${{ env.PRJ_FULL_PATH }}
+
+    - name: List Files
+      shell: bash
+      run: ls -l
+
     - name: Configure Java
       uses: actions/setup-java@v4
       with:
