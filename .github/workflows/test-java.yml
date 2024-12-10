@@ -1,0 +1,13 @@
+name: Test Java
+
+on:
+  workflow_call:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/workflows/setup-java.yml
+
+      - name: Unit Tests
+        run: mvn test

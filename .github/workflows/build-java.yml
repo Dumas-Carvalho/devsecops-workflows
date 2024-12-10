@@ -1,0 +1,22 @@
+name: Build Java
+
+on:
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/workflows/common/setup-java.yml
+
+      - name: Build Maven
+        run: mvn -B -DskipTests clean package
+
+      - name: Copy Artifacts
+        run: mkdir artifact && cp target/*.jar artifact
+
+      - uses: actions/upload-artifact@v4
+        name: Upload Artifacts
+        with:
+          name: Package
+          path: artifact
