@@ -16,10 +16,9 @@ jobs:
         with:
           repository: Dumas-Carvalho/devsecops-workflows
           ref: main
-          path: .github/workflows
 
       - id: setup_java
-        uses: ./.github/workflows/actions/setup-java
+        uses: ./devsecops-workflows/actions/setup-java
         with:
           jdk_version: '17'
 
