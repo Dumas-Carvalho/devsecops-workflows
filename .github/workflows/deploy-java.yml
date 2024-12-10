@@ -27,5 +27,6 @@ jobs:
 
       - name: Deploy App
         run: |
+          chmod +x scripts/deliver.sh
           ./scripts/deliver.sh
         working-directory: ${{ env.PRJ_FULL_PATH }}
